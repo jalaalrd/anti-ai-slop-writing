@@ -1,0 +1,73 @@
+name: "Copilot Setup Steps"
+
+# Automatically run the setup steps when they are changed to allow for easy validation,
+# and allow manual testing through the repository's "Actions" tab
+on:
+    workflow_dispatch:
+    push:
+        paths:
+            - .github/workflows/copilot-setup-steps.yml
+    pull_request:
+        paths:
+            - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+    # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
+    copilot-setup-steps:
+        runs-on: ubuntu-latest
+
+        # Set the permissions to the lowest permissions possible needed for your steps.
+        # Copilot will be given its own token for its operations.
+        permissions:
+            # If you want to clone the repository as part of your setup steps, for example to install dependencies, you'll need the `contents: read` permission.
+            # If you don't clone the repository in your setup steps, Copilot will do this for you automatically after the steps complete.
+            contents: read
+
+        # Environment variables for Miyagi cloud agent
+        env:
+            # Jira configuration from miyagi-config.json
+            MIYAGI_JIRA_BASE_URL: "https://atc.bmwgroup.net/jira"
+            MIYAGI_JIRA_PROJECT: "ONEF"
+            # Confluence configuration from miyagi-config.json
+            MIYAGI_CONFLUENCE_BASE_URL: "https://atc.bmwgroup.net/confluence"
+            MIYAGI_CONFLUENCE_SPACE: "ONEF"
+
+        # You can define any steps you want, and they will run before the agent starts.
+        # If you do not check out your code, Copilot will do this for you.
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+
+            - name: Validate miyagi-config.json
+              run: |
+                  if [ ! -f ".github/agents/miyagi-config.json" ]; then
+                    echo "Error: miyagi-config.json not found at .github/agents/miyagi-config.json"
+                    exit 1
+                  fi
+                  
+                  # Basic JSON validation
+                  if ! python3 -m json.tool .github/agents/miyagi-config.json > /dev/null 2>&1; then
+                    echo "Error: miyagi-config.json is not valid JSON"
+                    exit 1
+                  fi
+                  
+                  echo "✓ miyagi-config.json is valid and present"
+
+            - name: Display Miyagi configuration summary
+              run: |
+                  echo "📋 Miyagi Configuration Summary"
+                  echo "================================"
+                  python3 -c "
+                  import json
+                  with open('.github/agents/miyagi-config.json') as f:
+                    config = json.load(f)
+                  
+                  print(f'Version: {config.get(\"_version\", \"N/A\")}')
+                  print(f'User: {config.get(\"user_display_name\", \"N/A\")}')
+                  print(f'Jira Project: {config.get(\"jira\", {}).get(\"default_project\", \"N/A\")}')
+                  print(f'Confluence Space: {config.get(\"confluence\", {}).get(\"default_space\", \"N/A\")}')
+                  print(f'Teams configured: {len(config.get(\"teams\", []))}')
+                  print(f'Sprint Review teams: {len(config.get(\"sprint_review\", {}).get(\"teams\", []))}')
+                  "
