@@ -1,0 +1,4 @@
+Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+   at Checkout.Total.Compute(Cart cart) in Checkout/Total.cs:line 41
+   at Checkout.Api.PostOrder() in Checkout/Api.cs:line 18
+Cart.Items was null when a guest user submitted an empty basket.

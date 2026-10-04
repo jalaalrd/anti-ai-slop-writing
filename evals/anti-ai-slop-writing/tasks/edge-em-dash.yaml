@@ -1,0 +1,26 @@
+id: edge-em-dash-001
+name: Em dash budget
+description: >-
+  Edge case: at most one em dash in a short piece. Prefer commas or new sentences.
+tags:
+  - edge-case
+inputs:
+  prompt: >-
+    write three sentences from facts-launch.md. Use at most one em dash in the
+    whole answer. Prefer commas or a new sentence.
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: code
+    name: em-dash-budget
+    config:
+      language: python
+      assertions:
+        - "output.count('\u2014') <= 1"
+  - type: text
+    name: still-uses-facts
+    config:
+      contains:
+        - "USDC"

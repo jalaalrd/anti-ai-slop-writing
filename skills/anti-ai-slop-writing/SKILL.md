@@ -1,6 +1,14 @@
 ---
 name: anti-ai-slop-writing
-description: Produces human-sounding text that avoids detectable AI writing patterns. Activates on any writing task — tweets, emails, articles, bios, captions, reports, copy, messages, LinkedIn posts, cover letters, README files, or any content where the output must not read as AI-generated. Enforces banned vocabulary, structural variety, punctuation discipline, accuracy rules, and voice calibration. Use when the user says "write," "draft," "rewrite," "make this sound human," "anti-slop," "not AI," or any variation of wanting authentic-sounding output.
+description: >-
+  Produces human-sounding text that avoids detectable AI writing patterns.
+  Activates on any writing task — tweets, emails, articles, bios, captions,
+  reports, copy, messages, LinkedIn posts, cover letters, README files, or any
+  content where the output must not read as AI-generated. Enforces banned
+  vocabulary, structural variety, punctuation discipline, accuracy rules, and
+  voice calibration.
+  USE FOR: write, draft, rewrite, make this sound human, anti-slop, not AI.
+  DO NOT USE FOR: debug this crash, run the test suite, git rebase.
 ---
 
 # Anti-AI-Slop Writing Directive v2
@@ -96,6 +104,12 @@ These patterns are how readers spot AI text even when vocabulary is clean.
 **No hashtag stacks.** Zero to two, integrated naturally.
 
 **No markdown in plain text contexts** — emails, DMs, SMS. Asterisks rendering as symbols is an instant tell.
+
+## Parameters
+
+- **platform**: tweet, email, LinkedIn, cover letter, DM, README, or report. Formatting rules change with the platform. No markdown headers in social media, emails, or casual writing.
+- **voice**: match the named person's register when given; otherwise default to direct, slightly informal, contractions.
+- **banned-words**: load `references/banned-words.md` before writing. That list includes gating-factor jargon, Slim gate, minted-as-allocate, and fake-candor openers such as "my honest take".
 
 ## Voice Calibration
 

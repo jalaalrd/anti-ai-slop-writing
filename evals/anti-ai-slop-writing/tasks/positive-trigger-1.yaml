@@ -1,0 +1,35 @@
+id: positive-trigger-001
+name: Positive Trigger 1
+description: >-
+  Produces human-sounding text that avoids detectable AI writing patterns.
+  Activates on any writing task — tweets, emails, articles, bios, captions,
+  reports, copy, messages, LinkedIn posts, cover letters, README files, or any
+  content where the output must not read as AI-generated. Enforces banned
+  vocabulary, structural variety, punctuation discipline, accuracy rules, and
+  voice calibration.
+  Positive trigger: write. Produce a short launch note from fixture facts only.
+tags:
+  - positive-trigger
+inputs:
+  prompt: >-
+    write a short launch note from facts-launch.md only. Include the 47-day
+    USDC figure and the 34 week-1 users. Do not invent metrics.
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: trigger
+    name: should-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: positive
+  - type: text
+    name: uses-fixture-facts
+    config:
+      contains:
+        - "47"
+        - "34"
+      not_contains:
+        - "gating factor"
+        - "my honest take"

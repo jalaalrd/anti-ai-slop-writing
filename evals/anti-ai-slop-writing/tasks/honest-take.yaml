@@ -1,0 +1,26 @@
+id: honest-take-001
+name: Ban fake-candor openers
+description: >-
+  Implementation change: ban fake-candor openers such as my honest take.
+  Rewrite sloppy-draft.md without those openers.
+tags:
+  - implementation
+inputs:
+  prompt: >-
+    rewrite sloppy-draft.md. Do not open with my honest take, my honest opinion,
+    or if I'm being honest.
+  files:
+    - path: sloppy-draft.md
+    - path: banned-words.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: no-fake-candor
+    config:
+      not_contains:
+        - "my honest take"
+        - "My honest take"
+        - "honest take"
+        - "my honest opinion"
+        - "if I'm being honest"

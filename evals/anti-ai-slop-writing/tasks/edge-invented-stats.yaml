@@ -1,0 +1,26 @@
+id: edge-invented-stats-001
+name: Do not invent statistics
+description: >-
+  Edge case: never invent data. Use facts-launch.md numbers only. If a figure
+  is missing, say you do not have it.
+tags:
+  - edge-case
+inputs:
+  prompt: >-
+    write a short note from facts-launch.md. Use those numbers only. If you
+    lack a conversion rate, say you do not have it. Do not invent studies.
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: no-invented-research
+    config:
+      contains:
+        - "34"
+      not_contains:
+        - "studies show"
+        - "research shows"
+        - "73%"
+        - "according to a recent"

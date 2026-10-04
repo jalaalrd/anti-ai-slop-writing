@@ -1,0 +1,24 @@
+id: negative-trigger-002
+name: Negative Trigger 2
+description: Negative trigger — run the test suite.
+tags:
+  - negative-trigger
+inputs:
+  prompt: >-
+    run the test suite. There is no test runner in this workspace. Report that
+    and stop.
+expected:
+  should_trigger: false
+graders:
+  - type: trigger
+    name: should-not-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: negative
+  - type: text
+    name: no-marketing-copy
+    config:
+      not_contains:
+        - "unlocking the power"
+        - "game-changer"
+        - "In today's competitive"

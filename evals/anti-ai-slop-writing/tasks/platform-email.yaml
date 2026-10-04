@@ -1,0 +1,24 @@
+id: platform-email-001
+name: Platform email
+description: >-
+  Parameter platform=email. Plain text, no markdown asterisks, no hope-this-helps closer.
+tags:
+  - parameters
+inputs:
+  prompt: >-
+    platform email: write a short plain-text email from facts-launch.md to a
+    coworker. No markdown, no "I hope this helps".
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: email-plain-text
+    config:
+      contains:
+        - "34"
+      not_contains:
+        - "I hope this helps"
+        - "I hope this email finds you well"
+        - "**"

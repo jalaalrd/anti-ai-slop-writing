@@ -1,0 +1,29 @@
+id: minted-allocate-001
+name: Ban minted-as-allocate
+description: >-
+  Implementation change: minted/minting is banned as create/allocate jargon,
+  not as coinage or NFT mint APIs. Use allocated req-1842; NFT mint 0.02 SOL
+  stays allowed.
+tags:
+  - implementation
+  - edge-case
+inputs:
+  prompt: >-
+    write two short sentences from request-id.md. Use allocated for the request
+    id. The NFT mint API charge may use the word mint. Do not say you minted
+    an identifier.
+  files:
+    - path: request-id.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: allocate-not-mint-id
+    config:
+      contains:
+        - "req-1842"
+        - "0.02"
+      not_contains:
+        - "minted a"
+        - "we minted"
+        - "minted request"

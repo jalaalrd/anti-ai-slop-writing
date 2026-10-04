@@ -1,0 +1,41 @@
+name: anti-ai-slop-writing-eval
+description: >-
+  Trigger, parameter, edge, and gating-factor regression coverage for
+  anti-ai-slop-writing. Fixtures stand in for live copy and external state.
+  Copilot CLI 1.0.85 on this machine rejects startup --model, so local runs
+  must use a CLI that accepts it or a shim that strips that flag.
+skill: anti-ai-slop-writing
+schemaVersion: "1.0"
+version: "1.0"
+config:
+  trials_per_task: 1
+  timeout_seconds: 300
+  parallel: false
+  executor: copilot-sdk
+  model: gpt-6-luna
+  inject_skill_body: true
+metrics:
+  - name: task_completion
+    weight: 0.7
+    threshold: 0.8
+    description: Did the skill complete trigger and anti-trigger checks?
+  - name: efficiency
+    weight: 0.3
+    threshold: 0.7
+    description: Did the skill stay within behavior limits?
+graders:
+  - type: behavior
+    name: token-budget
+    config:
+      max_tokens: 400000
+  - type: text
+    name: no-common-slop
+    config:
+      not_contains:
+        - "It's worth noting"
+        - "I hope this helps"
+        - "As an AI"
+        - "Certainly,"
+        - "delve"
+tasks:
+  - "tasks/*.yaml"

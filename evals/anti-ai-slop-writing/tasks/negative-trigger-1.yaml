@@ -1,0 +1,27 @@
+id: negative-trigger-001
+name: Negative Trigger 1
+description: Negative trigger — debug this crash. Do not produce launch copy.
+tags:
+  - negative-trigger
+timeout_seconds: 90
+inputs:
+  prompt: >-
+    debug this crash. Read crash-log.txt. Reply with the exception type only, then stop.
+  files:
+    - path: crash-log.txt
+expected:
+  should_trigger: false
+graders:
+  - type: trigger
+    name: should-not-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: negative
+  - type: text
+    name: talks-about-crash
+    config:
+      contains:
+        - "NullReferenceException"
+      not_contains:
+        - "In today's competitive"
+        - "game-changer"
