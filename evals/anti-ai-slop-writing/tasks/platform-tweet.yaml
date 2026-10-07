@@ -1,0 +1,26 @@
+id: platform-tweet-001
+name: Platform tweet
+description: >-
+  platform: tweet, email, LinkedIn, cover letter, DM, README, or report.
+  Formatting rules change with the platform. No markdown headers in social
+  media, emails, or casual writing.
+tags:
+  - parameters
+inputs:
+  prompt: >-
+    platform tweet: write one tweet from facts-launch.md. No markdown headers,
+    no Thread: opener, at most two hashtags.
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: tweet-formatting
+    config:
+      contains:
+        - "47"
+      not_contains:
+        - "Thread:"
+        - "🧵"
+        - "# Treasury"

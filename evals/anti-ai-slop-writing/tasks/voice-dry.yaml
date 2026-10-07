@@ -1,0 +1,26 @@
+id: voice-dry-001
+name: Voice dry sarcasm
+description: >-
+  voice: match the named person's register when given; otherwise default to
+  direct, slightly informal, contractions.
+  Match a dry, sarcastic coworker; no corporate pep talk.
+tags:
+  - parameters
+inputs:
+  prompt: >-
+    voice: write two sentences from facts-launch.md in the voice of a dry,
+    sarcastic coworker who never cheerleads. No "As a [role], I".
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: no-pep-or-role-opener
+    config:
+      contains:
+        - "12"
+      not_contains:
+        - "As a"
+        - "thrilled"
+        - "delighted"

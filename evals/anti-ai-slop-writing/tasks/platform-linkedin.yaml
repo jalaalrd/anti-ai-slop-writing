@@ -1,0 +1,24 @@
+id: platform-linkedin-001
+name: Platform LinkedIn
+description: Parameter platform=LinkedIn. No hashtag stacks and no thread openers.
+tags:
+  - parameters
+inputs:
+  prompt: >-
+    platform LinkedIn: write a short post from facts-launch.md. Zero to two
+    hashtags, no Thread: opener, no markdown headers.
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: linkedin-formatting
+    config:
+      contains:
+        - "Solana"
+      not_contains:
+        - "Thread:"
+        - "#leadership"
+        - "#innovation"
+        - "#growth"

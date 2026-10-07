@@ -1,0 +1,23 @@
+id: negative-trigger-003
+name: Negative Trigger 3
+description: Negative trigger — git rebase.
+tags:
+  - negative-trigger
+inputs:
+  prompt: >-
+    git rebase onto main is not requested. Say you will not rebase, then stop.
+expected:
+  should_trigger: false
+graders:
+  - type: trigger
+    name: should-not-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: negative
+  - type: text
+    name: no-linkedin-post
+    config:
+      not_contains:
+        - "I'm thrilled"
+        - "Excited to share"
+        - "#leadership"

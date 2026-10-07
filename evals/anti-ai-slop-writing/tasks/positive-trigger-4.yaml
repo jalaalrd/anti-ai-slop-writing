@@ -1,0 +1,28 @@
+id: positive-trigger-004
+name: Positive Trigger 4
+description: Positive trigger — anti-slop rewrite of fixture copy.
+tags:
+  - positive-trigger
+timeout_seconds: 180
+inputs:
+  prompt: >-
+    anti-slop pass on sloppy-draft.md. Read banned-words.md. One paragraph.
+    Replace banned vocabulary.
+  files:
+    - path: sloppy-draft.md
+    - path: banned-words.md
+expected:
+  should_trigger: true
+graders:
+  - type: trigger
+    name: should-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: positive
+  - type: text
+    name: no-banned-openers
+    config:
+      not_contains:
+        - "Certainly,"
+        - "I'd be happy to"
+        - "In conclusion"

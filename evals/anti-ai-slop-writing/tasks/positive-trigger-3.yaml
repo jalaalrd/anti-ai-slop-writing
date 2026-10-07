@@ -1,0 +1,32 @@
+id: positive-trigger-003
+name: Positive Trigger 3
+description: >-
+  Positive trigger: rewrite / make this sound human. Rewrite the sloppy draft
+  using banned-words.md as the list to avoid.
+tags:
+  - positive-trigger
+inputs:
+  prompt: >-
+    rewrite sloppy-draft.md and make this sound human. Read banned-words.md first.
+    Use only facts in the draft that are concrete; drop the rest. Do not keep
+    banned phrases.
+  files:
+    - path: sloppy-draft.md
+    - path: banned-words.md
+expected:
+  should_trigger: true
+graders:
+  - type: trigger
+    name: should-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: positive
+  - type: text
+    name: drops-slop-phrases
+    config:
+      not_contains:
+        - "In today's competitive"
+        - "It's worth noting"
+        - "game-changer"
+        - "gating factor"
+        - "my honest take"

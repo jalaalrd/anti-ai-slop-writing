@@ -1,0 +1,28 @@
+id: positive-trigger-005
+name: Positive Trigger 5
+description: Positive trigger — not AI. Write from fixture facts, not a chatbot voice.
+tags:
+  - positive-trigger
+inputs:
+  prompt: >-
+    not AI: write two sentences from facts-launch.md so a human coworker could
+    have sent them. No chatbot openers.
+  files:
+    - path: facts-launch.md
+expected:
+  should_trigger: true
+graders:
+  - type: trigger
+    name: should-trigger
+    config:
+      skill_path: skills/anti-ai-slop-writing/SKILL.md
+      mode: positive
+  - type: text
+    name: no-chatbot-voice
+    config:
+      contains:
+        - "47"
+      not_contains:
+        - "As an AI"
+        - "Great question"
+        - "I'd be happy to"

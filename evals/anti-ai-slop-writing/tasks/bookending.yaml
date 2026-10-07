@@ -1,0 +1,28 @@
+id: bookending-001
+name: No summary bookending
+description: >-
+  Implementation change: no summary bookending. Say the wait reason once.
+  Do not preview then recap.
+tags:
+  - implementation
+inputs:
+  prompt: >-
+    write one paragraph from pr-wait.md. Do not open by previewing what you
+    will say and do not close by restating it. No In conclusion or Overall,
+    as a paragraph starter.
+  files:
+    - path: pr-wait.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: no-bookends
+    config:
+      contains:
+        - "risk note"
+      not_contains:
+        - "In this update"
+        - "In conclusion"
+        - "To summarize"
+        - "Overall,"
+        - "This post will"

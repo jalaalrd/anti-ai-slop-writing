@@ -56,9 +56,18 @@ Or just ask: "Write this tweet / email / article and make it sound human."
 
 ```
 anti-ai-slop-writing/
-├── SKILL.md                          # Core rules (under 500 lines)
-└── references/
-    └── banned-words.md               # Full banned vocabulary list (loaded on demand)
+├── SKILL.md                          # Core rules (under 500 lines, we promise)
+├── references/
+│   └── banned-words.md               # Full banned vocabulary list (loaded on demand)
+└── evals/anti-ai-slop-writing/       # Waza tasks. Yes, we eval the thing that yells at eval-speak.
+```
+
+Run the suite from the repo root once `waza` and Copilot CLI are on the PATH:
+
+```bash
+waza spec verify skills/anti-ai-slop-writing/SKILL.md evals/anti-ai-slop-writing/eval.yaml --fail
+waza run evals/anti-ai-slop-writing/eval.yaml --task "gating-factor*" --no-cache -v
+waza run evals/anti-ai-slop-writing/eval.yaml --no-cache
 ```
 
 ## Author

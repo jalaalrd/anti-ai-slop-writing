@@ -1,1 +1,6 @@
 .DS_Store
+.waza-cache/
+results.json
+test-results.xml
+evals/**/results.json
+evals/**/test-results.xml

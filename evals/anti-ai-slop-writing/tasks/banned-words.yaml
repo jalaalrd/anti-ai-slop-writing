@@ -1,0 +1,30 @@
+id: banned-words-001
+name: Load banned-words list
+description: >-
+  banned-words: load `references/banned-words.md` before writing. That list
+  includes gating-factor jargon, Slim gate, minted-as-allocate, and fake-candor
+  openers such as "my honest take".
+  Also read the fixture list and rewrite without those strings.
+tags:
+  - parameters
+inputs:
+  prompt: >-
+    banned-words: load references/banned-words.md before writing if the skill
+    ships it, and also read banned-words.md in this workspace, then rewrite
+    sloppy-draft.md. Do not use any listed word or phrase.
+  files:
+    - path: banned-words.md
+    - path: sloppy-draft.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: omits-listed-bans
+    config:
+      not_contains:
+        - "delve"
+        - "tapestry"
+        - "leverage"
+        - "seamless"
+        - "cutting-edge"
+        - "robust"

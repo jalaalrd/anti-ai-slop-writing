@@ -1,0 +1,30 @@
+id: gating-factor-001
+name: Ban gating-factor jargon
+description: >-
+  Implementation change: ban gating factor, evidence-gated, and Slim gate
+  productized jargon. Write the PR wait note from pr-wait.md only.
+tags:
+  - implementation
+  - edge-case
+inputs:
+  prompt: >-
+    write a four-sentence team update from pr-wait.md only. Do not invent a
+    productized gate name. Say the review checklist is incomplete.
+  files:
+    - path: pr-wait.md
+expected:
+  should_trigger: true
+graders:
+  - type: text
+    name: no-gating-jargon
+    config:
+      contains:
+        - "checklist"
+      not_contains:
+        - "gating factor"
+        - "evidence-gated"
+        - "evidence gated"
+        - "Slim gate"
+        - "slim-gate"
+        - "Slimgate"
+        - "slimgate"
