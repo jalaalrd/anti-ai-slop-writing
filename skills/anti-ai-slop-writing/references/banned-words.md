@@ -19,6 +19,7 @@ delve / delves / delving, tapestry, landscape (figurative), testament (e.g. "a t
 - "Not just X, but Y"
 - "It's not just about X — it's about Y"
 - "It's not X, it's Y" / "This isn't X, it's Y" / "This isn't just X, it's Y"
+- "Three separate jobs in the daemon — only one of them is Gemini" / "[count or inventory] — [narrower reveal]" / "[count]: [narrower reveal]"
 - "gating factor" / "the gating factor"
 - "evidence-gated" / "evidence gated" / "evidence gating"
 - "gated on evidence" / "gate on evidence" / "gated by evidence"

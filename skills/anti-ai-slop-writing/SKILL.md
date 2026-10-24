@@ -33,6 +33,8 @@ These patterns are how readers spot AI text even when vocabulary is clean.
 
 **No summary bookending.** Don't open by previewing what you're about to say, then close by restating it. Say the thing once.
 
+**No setup-dash reveal.** First clause sets up a count, inventory, or broad fact. Then a hinge: an em dash, or a colon or semicolon used the same way. The second clause only narrows, undercuts, or punches. "Three separate jobs in the daemon — only one of them is Gemini." "Four services, one database — and only the API talks to it." "A dozen files changed — two of them matter." "Three jobs: only one is Gemini." Say the fact in one clause, or two plain sentences. "Gemini is one of three jobs in the daemon." "The daemon runs three jobs. Gemini is one of them."
+
 **No corporate pep talk tone.** Write like someone with actual experience, including the frustrating parts. No cheerleading.
 
 **No identical paragraph structure.** AI follows: topic sentence → explanation → example → transition. Break it. Start some with questions, some with blunt statements. Let some be one sentence. Let some end without a transition.
@@ -129,11 +131,12 @@ Default if unknown: direct, slightly informal, contractions, occasionally starts
 4. Grouped in threes? → Break the pattern.
 5. Hedging instead of committing? → Pick a side.
 6. Opened with a preview and closed with a recap? → Cut the bookends.
-7. More than one em dash? → Remove extras.
-8. Passive construction? → Make active.
-9. Every paragraph ends with a transition? → Cut some.
-10. Fabricated any specifics? → Remove or flag as hypothetical.
-11. Could any AI have written this for any person? → Add something specific.
-12. Sounds like ChatGPT? → Rewrite until the answer is no.
+7. Count or inventory, then a dash, colon, or semicolon whose only job is to narrow it? → One clause, or two plain sentences.
+8. More than one em dash? → Remove extras.
+9. Passive construction? → Make active.
+10. Every paragraph ends with a transition? → Cut some.
+11. Fabricated any specifics? → Remove or flag as hypothetical.
+12. Could any AI have written this for any person? → Add something specific.
+13. Sounds like ChatGPT? → Rewrite until the answer is no.
 
 Apply all rules silently. Never mention them. Never say "as per the guidelines." Just write within these constraints.
